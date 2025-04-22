@@ -13,8 +13,7 @@
     }
 
     body {
-      /* Светлый градиент от верхнего левого угла к нижнему правому */
-      background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -22,48 +21,67 @@
 
     .container {
       text-align: center;
+      width: 400px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
 
     .title {
-      font-size: 48px;
+      font-size: 32px;
       font-weight: bold;
-      margin-bottom: 40px;
-      color: #333;
+      margin-bottom: 30px;
+      color: #2d3748;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
 
     .button {
-      display: inline-block;
+      width: 100%;
       padding: 15px 30px;
-      margin: 10px;
       font-size: 18px;
       font-weight: bold;
-      color: #fff;
-      background-color: #4CAF50;
+      color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: transform 0.2s, box-shadow 0.2s;
       text-decoration: none;
+      text-align: center;
     }
 
     .button:hover {
-      background-color: #45a049;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
-    .button.secondary {
-      background-color: #2196F3;
+    .primary {
+      background: #4a5568;
     }
 
-    .button.secondary:hover {
-      background-color: #0b7dda;
+    .primary:hover {
+      background: #2d3748;
     }
 
-    .button.danger {
-      background-color: #f44336;
+    .secondary {
+      background: #4299e1;
     }
 
-    .button.danger:hover {
-      background-color: #da190b;
+    .secondary:hover {
+      background: #3182ce;
+    }
+
+    .danger {
+      background: #f56565;
+    }
+
+    .danger:hover {
+      background: #e53e3e;
     }
   </style>
 </head>
@@ -71,10 +89,18 @@
 <body>
   <div class="container">
     <div class="title">Выбор режима</div>
-    <a href="#" class="button">Генерация</a>
-    <a href="#" class="button secondary">Обработка</a>
-    <a href="#" class="button danger">Выход</a>
+    <div class="button-container">
+      <a href="#" onclick="handleGenerateClick()" class="button primary">Генерация</a>
+      <a href="#" class="button secondary">Обработка</a>
+      <a href="#" class="button danger">Выход</a>
+    </div>
   </div>
+
+  <script>
+    function handleGenerateClick() {
+      window.location.href = 'file:///generation.html';
+    }
+  </script>
 </body>
 
 </html>
