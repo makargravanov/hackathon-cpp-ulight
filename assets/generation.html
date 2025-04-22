@@ -77,18 +77,129 @@
         .option-button:hover {
             background: #38a169;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Модальные окна -->
+    <div id="newFileModal" class="modal">
+        <div class="modal-content">
+            <h3>Новый файл</h3>
+            <div class="input-group">
+                <input type="text" id="newFileName" placeholder="Введите имя файла">
+            </div>
+            <button onclick="createNewFile()" class="button option-button">Создать</button>
+        </div>
+    </div>
+
+    <div id="existingFileModal" class="modal">
+        <div class="modal-content">
+            <h3>Открыть файл</h3>
+            <div class="input-group">
+                <input type="text" id="existingFileName" placeholder="Введите имя файла.aurora">
+            </div>
+            <button onclick="openExistingFile()" class="button option-button">Открыть</button>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
     <div class="container">
         <div class="title">Тип генерации</div>
         <div class="button-container">
-            <a href="#" class="button option-button">Новый файл</a>
-            <a href="#" class="button option-button">Существующий файл</a>
+            <a href="#" onclick="showModal('newFileModal')" class="button option-button">Новый файл</a>
+            <a href="#" onclick="showModal('existingFileModal')" class="button option-button">Существующий файл</a>
             <a href="file:///app.html" class="button back-button">Назад</a>
         </div>
     </div>
+
+    <script>
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function createNewFile() {
+            const fileName = document.getElementById('newFileName').value;
+            if (fileName) {
+                createFile(fileName);
+                window.location.href = `fileView.html?name=${encodeURIComponent(fileName)}`;
+            }
+        }
+
+        function openExistingFile() {
+            const fileName = document.getElementById('existingFileName').value;
+            if (fileName && checkFileExists(fileName + '.aurora')) {
+                closeModal('existingFileModal');
+                const baseName = fileName.replace(/\.aurora$/, '');
+                window.location.href = `file:///fileView.html?name=${encodeURIComponent(baseName)}`;
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -1,7 +1,12 @@
 #pragma once
 #include <AppCore/AppCore.h>
 
+#include <filesystem>
+#include <fstream>
+
 using namespace ultralight;
+
+namespace fs = std::filesystem;
 
 class MyApp : public AppListener,
               public WindowListener,
@@ -47,4 +52,7 @@ protected:
   RefPtr<App> app_;
   RefPtr<Window> window_;
   RefPtr<Overlay> overlay_;
+
+private:
+  std::string currentFileName;
 };
