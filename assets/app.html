@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Выбор режима</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      /* Светлый градиент от верхнего левого угла к нижнему правому */
+      background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .title {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+
+    .button.secondary {
+      background-color: #2196F3;
+    }
+
+    .button.secondary:hover {
+      background-color: #0b7dda;
+    }
+
+    .button.danger {
+      background-color: #f44336;
+    }
+
+    .button.danger:hover {
+      background-color: #da190b;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="title">Выбор режима</div>
+    <a href="#" class="button">Генерация</a>
+    <a href="#" class="button secondary">Обработка</a>
+    <a href="#" class="button danger">Выход</a>
+  </div>
+</body>
+
+</html>
