@@ -94,15 +94,23 @@ void MyApp::OnFinishLoading(ultralight::View* caller,
   ///
 }
 
+// В методе OnDOMReady добавьте привязку обработчиков:
 void MyApp::OnDOMReady(ultralight::View* caller,
-                       uint64_t frame_id,
-                       bool is_main_frame,
-                       const String& url) {
-  ///
-  /// This is called when a frame's DOM has finished loading on the page.
-  ///
-  /// This is the best time to setup any JavaScript bindings.
-  ///
+					   uint64_t frame_id,
+					   bool is_main_frame,
+					   const String& url) {
+	// Получаем JS контекст
+	RefPtr<JSContext> context = caller->LockJSContext();
+	JSContextRef ctx = context->ctx();
+
+	// Регистрируем функцию для обработки переходов
+	JSStringRef funcName = JSStringCreateWithUTF8CString("handleViewChange");
+	JSObjectRef func = JSObjectMakeFunctionWithCallback(ctx, funcName, [](JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
+		// Здесь можно добавить логику обработки переходов
+		return JSValueMakeUndefined(ctx);
+	});
+	JSObjectSetProperty(ctx, JSContextGetGlobalObject(ctx), funcName, func, kJSPropertyAttributeNone, nullptr);
+	JSStringRelease(funcName);
 }
 
 void MyApp::OnChangeCursor(ultralight::View* caller,
