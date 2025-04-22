@@ -1,0 +1,11 @@
+# Ignore build/bin directories
+[Bb]uild/
+build_*/
+.DS_Store
+.vs/
+SDK/*
+CMakeLists.txt
+CMakePresets.json
+.vscode/
+cmake/
+SDK/
